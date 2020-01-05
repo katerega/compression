@@ -9,12 +9,8 @@ let package = Package(
             targets: ["Compression"]),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/tris-code/stream.git",
-            .branch("master")),
-        .package(
-            url: "https://github.com/tris-code/test.git",
-            .branch("master"))
+        .package(path: "../Stream"),
+        .package(path: "../Test")
     ],
     targets: [
         .target(
@@ -23,5 +19,14 @@ let package = Package(
         .testTarget(
             name: "CompressionTests",
             dependencies: ["Compression", "Test"]),
+        .target(
+            name: "CompressionBenchmark",
+            dependencies: [
+                "Measure",
+                "Stream",
+                "Compression",
+            ],
+            path: "./Benchmark"
+        )
     ]
 )
