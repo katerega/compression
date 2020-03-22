@@ -1,5 +1,10 @@
 import Test
+
+#if !canImport(ObjectiveC)
 @testable import Compression
+#else
+@testable import _Compression
+#endif
 
 class BlockTypeTests: TestCase {
     func testBlockType() {

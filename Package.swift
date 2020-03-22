@@ -1,12 +1,18 @@
 // swift-tools-version:5.0
 import PackageDescription
 
+#if !canImport(ObjectiveC)
+let compression = "Compression"
+#else
+let compression = "_Compression"
+#endif
+
 let package = Package(
-    name: "Compression",
+    name: compression,
     products: [
         .library(
-            name: "Compression",
-            targets: ["Compression"]),
+            name: compression,
+            targets: [compression]),
     ],
     dependencies: [
         .package(path: "../Stream"),
@@ -14,19 +20,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Compression",
-            dependencies: ["Stream"]),
+            name: compression,
+            dependencies: ["Stream"],
+            path: "./Sources/Compression"),
         .testTarget(
-            name: "CompressionTests",
-            dependencies: ["Compression", "Test"]),
-        .target(
-            name: "CompressionBenchmark",
-            dependencies: [
-                "Measure",
-                "Stream",
-                "Compression",
-            ],
-            path: "./Benchmark"
-        )
+            name: compression + "Tests",
+            dependencies: [.init(stringLiteral: compression), "Test"],
+            path: "./Tests/CompressionTests"),
     ]
 )

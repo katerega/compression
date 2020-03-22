@@ -1,6 +1,11 @@
 import Test
 import Stream
+
+#if !canImport(ObjectiveC)
 @testable import Compression
+#else
+@testable import _Compression
+#endif
 
 class HuffmanBinaryHeapTests: TestCase {
     func testHeapFromValues() {
