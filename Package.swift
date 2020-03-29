@@ -15,8 +15,8 @@ let package = Package(
             targets: [compression]),
     ],
     dependencies: [
-        .package(path: "../Stream"),
-        .package(path: "../Test")
+        .package(path: "../stream"),
+        .package(path: "../test")
     ],
     targets: [
         .target(
